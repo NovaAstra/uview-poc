@@ -1,24 +1,28 @@
 <template>
   <view class="content">
-    <ImageCropper :imgSrc="require('./1.jpg')" @getImg="getImg"/>
+    <div @click="visible = true">{{ data.content || '没有数据' }}</div>
+
+    <CommentPopup :visible.sync="visible" v-model="data" />
   </view>
 </template>
 
 <script>
-import ImageCropper from "@/components/ImageCropper/ImageCropper.vue";
+import CommentPopup from "@/components/CommentPopup/CommentPopup.vue";
+import { data } from "./data"
 
 export default {
   components: {
-    ImageCropper,
+    CommentPopup,
   },
   data() {
     return {
-      visible: true,
+      visible: false,
+      data
     };
   },
   onLoad() { },
   methods: {
-    getImg(src){
+    getImg(src) {
       console.log(src)
     }
   },

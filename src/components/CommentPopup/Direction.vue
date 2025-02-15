@@ -62,6 +62,7 @@ export default {
   methods: {
     onClick() {
       this.visible = true;
+      console.log(13213)
     },
 
     onConfirm() {
@@ -76,6 +77,7 @@ export default {
 .comment-direction {
   display: inline-flex;
   min-width: 80px;
+  height: 30px;
   border-bottom: 3px solid #393b3d;
 }
 </style>

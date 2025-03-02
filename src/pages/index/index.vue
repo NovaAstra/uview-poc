@@ -1,18 +1,18 @@
 <template>
   <view class="content">
-    <div @click="visible = true">{{ data.content || '没有数据' }}</div>
+    <!-- <div @click="visible = true">{{ data.content || '没有数据' }}</div> -->
 
-    <CommentPopup :visible.sync="visible" v-model="data" />
+    <ChartRoom :visible.sync="visible" v-model="data" />
   </view>
 </template>
 
 <script>
-import CommentPopup from "@/components/CommentPopup/CommentPopup.vue";
+import ChartRoom from "@/components/ChartRoom/index.vue";
 import { data } from "./data"
 
 export default {
   components: {
-    CommentPopup,
+    ChartRoom,
   },
   data() {
     return {

@@ -1,6 +1,6 @@
 <template>
   <view class="chart-room">
-    <view class="send-chart__wrapper">
+    <view class="send-chart__wrapper" ref="scroll-content">
       <template v-for="(item, index) in list">
         <view class="send-chart-item" data-type="user" :key="index">
           <view class="send-chart-item-content">
@@ -23,7 +23,7 @@
         </template>
       </template>
 
-      <view class="bottom"></view>
+      <view class="scroll-bottom"></view>
     </view>
 
     <view class="send-input__wrapper">
@@ -67,29 +67,46 @@ export default {
       const md = new MarkdownIt();
       return md.render(content);
     },
+
     onSend() {
       const item = {
         question: this.content,
       };
 
       this.list.push(item);
-      console.log(this.list);
+
+      const answer = {
+        answersTime: "2025-03-02 00:00:00",
+        answerUuid: "chat322b25839a-92e8-453b-8e40-5d3bab24a961",
+        content: '',
+        loading: true,
+        isLike: "",
+        likeReason: "",
+        likeTime: "2025-03-02 00:00:00",
+        loading: true,
+      };
+
+      this.$set(item, "answers", [answer]);
 
       setTimeout(() => {
-        this.$set(item, "answers", [
-          {
-            answersTime: "2025-03-02 00:00:00",
-            answerUuid: "chat322b25839a-92e8-453b-8e40-5d3bab24a961",
-            content: "<think>\n嗯，用有很多文本内容，包括一些似乎是回答",
-            isLike: "",
-            likeReason: "",
-            likeTime: "2025-03-02 00:00:00",
-          },
-        ]);
+        const content = "<think>\n嗯，用有很多文本内容，包括一些似乎是回答";
 
-       
+        let index = 0;
+        const interval = setInterval(() => {
+          if (index < content.length) {
+            this.$set(
+              answer,
+              "content",
+              answer.content + content.charAt(index)
+            );
+            index++;
+          } else {
+            clearInterval(interval);
+          }
+        }, 100);
+
+        this.$set(answer, "loading", false);
       }, 5000);
-
     },
   },
 };

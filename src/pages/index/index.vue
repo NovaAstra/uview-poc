@@ -4,16 +4,16 @@
 
     <!-- <ChartRoom :visible.sync="visible" v-model="data" /> -->
 
-     <ul>
+     <!-- <ul>
         <li v-for="(item, index) in streamData" :key="index">{{ item }}</li>
-      </ul>
+      </ul> -->
   </view>
 </template>
 
 <script>
 import ChartRoom from "@/components/ChartRoom/index.vue";
 import { data } from "./data";
-import { sseEvents } from "@/components/SSE/event.js";
+// import { sseEvents } from "@/components/SSE/event.js";
 
 export default {
   components: {
@@ -28,9 +28,9 @@ export default {
     };
   },
   onLoad() {
-    sseEvents((data) => {
-      this.streamData.push(data);
-    });
+    // sseEvents((data) => {
+    //   this.streamData.push(data);
+    // });
   },
   methods: {
     getImg(src) {
